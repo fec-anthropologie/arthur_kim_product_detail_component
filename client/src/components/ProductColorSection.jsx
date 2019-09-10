@@ -1,6 +1,7 @@
 import React from 'react';
 import SizeList from './SizeList.jsx';
 import SizeGuides from './SizeGuides.jsx';
+import ColorCircle from './ColorCircle.jsx';
 
 class ProductColorSection extends React.Component {
   constructor(props) {
@@ -35,9 +36,10 @@ class ProductColorSection extends React.Component {
     }
   }
   render() {
-    let { colors, colorImages, sizeStandard, sizesUnavailable,
+    let { colorImages, colors , sizeStandard, sizesUnavailable,
       sizePetite, sizePetiteUnavailable, sizePlus, sizePlusUnavailable
     } = this.props.pictureData;
+    let { currentColor, handleColorClick } = this.props;
     let quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     let sizes, sizesOutofStock;
     if (this.state.clickedFit === 'standard-fit') {
@@ -50,18 +52,19 @@ class ProductColorSection extends React.Component {
       sizes = sizePlus;
       sizesOutofStock = sizePlusUnavailable;
     }
-
     if (this.props.pictureData) {
       return (
         <div className='product-color'>
           <div className='color-container'>
             <div className='color'>COLOR: </div>
-            <div className='type'>{colors[8]}</div>
+            <div className='type'>{currentColor}</div>
           </div>
           <div className='color-image-container'>
-            <div className='color-image-border'>
-              <img src={`${this.props.colorLink}`} className='color-image'></img>
-            </div>
+            {colorImages.map((colorImage, i) => {
+              return (
+                <ColorCircle colorImage={colorImage} colors={colors} key={i} handleColorClick={handleColorClick}/>
+              )
+           })}
           </div>
           <div className='fit-container'>
             <div className='fit'>FIT: </div>

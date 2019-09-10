@@ -36,6 +36,7 @@ class MainPictureDisplay extends React.Component {
   }
   render() {
     let { pictureArray, transformPictureValue } = this.props;
+    console.log('what is transformPictureValue inside MPD', transformPictureValue)
     if (pictureArray.length > 0) {
       return (
           <div className='main-picture-container'

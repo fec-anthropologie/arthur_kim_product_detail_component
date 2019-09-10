@@ -4,18 +4,18 @@ import PictureList from './PictureList.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import Axios from 'axios';
 import AfterPayModal from './AfterPayModal.jsx';
-const pictureArray = [
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b?$a15-pdp-detail-shot$&hei=900&qlt=80',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b2?$a15-pdp-detail-shot$&hei=900&qlt=80',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b3?$a15-pdp-detail-shot$&hei=900&qlt=80',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b4?$a15-pdp-detail-shot$&hei=900&qlt=80',
+// const pictureArray = [
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b?$a15-pdp-detail-shot$&hei=900&qlt=80',
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b2?$a15-pdp-detail-shot$&hei=900&qlt=80',
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b3?$a15-pdp-detail-shot$&hei=900&qlt=80',
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b4?$a15-pdp-detail-shot$&hei=900&qlt=80',
 
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c?$a15-pdp-detail-shot$&hei=900&qlt=80',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c3?$a15-pdp-detail-shot$&hei=900&qlt=80',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c4?$a15-pdp-detail-shot$&hei=900&qlt=80'
-];
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c?$a15-pdp-detail-shot$&hei=900&qlt=80',
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c3?$a15-pdp-detail-shot$&hei=900&qlt=80',
+//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c4?$a15-pdp-detail-shot$&hei=900&qlt=80'
+// ];
 const afterPay = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSYF5YkDEGMF8EYXrKBfL0aJOt6guePtglaHrDKQNnXkXPslvX';
-const colorLink = 'https://images.fabric.com/images/693/693/0403744.jpg';
+// const colorLink = 'https://images.fabric.com/images/693/693/0403744.jpg';
 import '../../dist/styleSheets/appstyles.css';
 import '../../dist/styleSheets/mainPictureStyles.css';
 import '../../dist/styleSheets/modalStyles.css';
@@ -31,6 +31,10 @@ class App extends React.Component {
     this.state = {
       pictureData: '',
       pictureArray: [],
+      colorImages: [],
+      colors: [],
+      currentColor: '',
+      // colorChange: false,
       mainPictureIndex: 0,
       transformPictureValue: 0,
       transformPictureListValue: 0,
@@ -45,17 +49,19 @@ class App extends React.Component {
     this.handleAfterPayInfoClick = this.handleAfterPayInfoClick.bind(this);
     this.handleAfterPayXClick = this.handleAfterPayXClick.bind(this);
     this.calculateTransformPictureValue = this.calculateTransformPictureValue.bind(this);
+    this.handleColorClick = this.handleColorClick.bind(this);
   }
   getPictureData(id) {
-    //initially set picture Array and mainPicture to be hardcoded
-    //will eventually use actual links from s3 to seed database
     Axios.get(`/api/products/${id}`)
       .then(({ data }) => {
         this.setState({
           pictureData: data,
-          pictureArray,
-          currentFivePictureArray: pictureArray.slice(0, 5),
-          mainPicture: pictureArray[0]
+          pictureArray: data.image,
+          currentFivePictureArray: data.image.slice(0, 5),
+          mainPicture: data.image[0],
+          colorImages: data.colorImages,
+          colors: data.colors,
+          currentColor: data.colors[0]
         })
       })
       .catch((err) => {
@@ -63,21 +69,24 @@ class App extends React.Component {
       })
   }
   changeMainPicture(e) {
-    let previousMainPictureIndex = this.state.mainPictureIndex;
-    let currentMainPictureIndex = this.state.pictureArray.indexOf(e.target.src);
-    //get width of current img
-    console.log('document querySelect', document.querySelector('.image-slide'))
+    let storagePics = []
+    for (var i = 0; i < this.state.pictureArray.length; i++){
+      if (this.state.pictureArray[i].indexOf(this.state.currentColor) !== -1){
+        storagePics.push(this.state.pictureArray[i])
+      }
+    }
+    let previousMainPictureIndex= this.state.mainPictureIndex;
+    let currentMainPictureIndex = storagePics.indexOf(e.target.src);
     let imageWidth = document.querySelector('.image-slide').clientWidth;
     let newTransformValue = this.calculateTransformPictureValue(previousMainPictureIndex, currentMainPictureIndex, imageWidth);
-
     this.setState({
       mainPictureIndex: currentMainPictureIndex,
       intialRenderOfMainPic: false,
-      transformPictureValue: this.state.transformPictureValue - newTransformValue
+      transformPictureValue: this.state.transformPictureValue - newTransformValue,
+      colorChange: false
     })
   }
   calculateTransformPictureValue(previous, current, width){
-    //will grab index of current  and previous index
     let differenceIndex = current - previous;
     return width * differenceIndex;
   }
@@ -121,7 +130,6 @@ class App extends React.Component {
   handleAfterPayXClick() {
     if (this.state.afterPayClicked) {
       document.getElementsByTagName('div')[0].removeAttribute('id');
-      // document.getElementsByTagName('body')[0].removeAttribute('id');
       document.getElementsByClassName('picture-list-carousel')[0].removeAttribute('id');
       document.getElementById('new-top-arrow').removeAttribute('id')
       document.getElementsByClassName('arrow-container-top')[0].setAttribute('id', 'top-arrow');
@@ -131,8 +139,23 @@ class App extends React.Component {
       })
     }
   }
+  handleColorClick(e){
+    // document.getElementById("picture-clicked").remove();
+    this.setState({
+      currentColor: e.target.id,
+      mainPictureIndex: 0,
+      transformPictureValue: 0,
+      transformPictureListValue: 0,
+      intialRenderOfMainPic: true,
+      // colorChange: !this.state.colorChange,
+      mainPictureIndex: 0
+    })
+  }
   componentDidMount() {
-    this.getPictureData(1);
+    // generates random id and sends api request
+    let randomArr = [3,4,5,26,34,53,43,72];
+  // this.getPictureData(15)
+    this.getPictureData(randomArr[Math.floor(Math.random() * randomArr.length)]);
   }
 
   render() {
@@ -143,7 +166,20 @@ class App extends React.Component {
       productCategory += 's';
     }
     let afterPayM = this.state.afterPayClicked ? <AfterPayModal afterPay={afterPay} handleAfterPayXClick={this.handleAfterPayXClick}/> : <div></div>
-
+    let currentPictureImages = [];
+    if (this.state.colors.length > 1){
+      for (var i = 0; i < this.state.pictureArray.length; i++){
+        if (this.state.pictureArray[i].indexOf(this.state.currentColor) !== -1){
+          currentPictureImages.push(this.state.pictureArray[i])
+        }
+      }
+    } else {
+      for (var i = 0; i < this.state.pictureArray.length; i++){
+        if (this.state.pictureArray[i].indexOf(this.state.currentColor) !== -1){
+          currentPictureImages.push(this.state.pictureArray[i])
+        }
+      }
+    }
     return (
       <div className='app-component-body'>
         <div className='app-after-pay'>{afterPayM}</div>
@@ -157,16 +193,16 @@ class App extends React.Component {
           </div>
           <div className='app-body-product'>
             <div className='images-container'>
-              <PictureList pictureArray={this.state.pictureArray} changeMainPicture={this.changeMainPicture}
+              <PictureList pictureArray={currentPictureImages} changeMainPicture={this.changeMainPicture}
                 currentFivePictureArray={this.state.currentFivePictureArray} changeFivePictures={this.changeFivePictures}
                 topArrowDarken={this.state.topArrowDarken} initialArrowCounter={this.state.initialArrowCounter} 
                 transformPictureListValue={this.state.transformPictureListValue}/>
               <MainPictureDisplay intialRenderOfMainPic={this.state.intialRenderOfMainPic} mainPictureIndex={this.state.mainPictureIndex}
-              pictureArray={this.state.pictureArray} transformPictureValue={this.state.transformPictureValue}/>
+              pictureArray={currentPictureImages} transformPictureValue={this.state.transformPictureValue}/>
             </div>
             <div className='product-info'>
               <ProductInfo pictureData={this.state.pictureData} afterPay={afterPay} handleAfterPayInfoClick={this.handleAfterPayInfoClick}
-                colorLink={colorLink}/>
+                colorImages={this.state.colorImages} currentColor={this.state.currentColor} handleColorClick={this.handleColorClick}/>
             </div>
           </div>
           <div className='images-caption'>Hover your mouse over an image to zoom.</div>

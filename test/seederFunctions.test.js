@@ -18,7 +18,6 @@ test('Check if name created grabs from 3 input arrays', () => {
   let brand = dress[0];
   let adjective = dress[1];
   let subCategory = dress[2] + ' ' + dress[3];
-  console.log('brand adjective subCategory', brand, adjective, subCategory)
   expect(productBrandName.indexOf(brand)).not.toBe(-1);
   expect(dressSubcategory.indexOf(subCategory)).not.toBe(-1);
   expect(dressAdjectives.indexOf(adjective)).not.toBe(-1);

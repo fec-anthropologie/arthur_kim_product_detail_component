@@ -30,30 +30,30 @@ class PictureList extends React.Component {
     }
   }
   render() {
-    let { 
-      changeFivePictures, 
-      changeMainPicture, initialArrowCounter, pictureArray, topArrowDarken, transformPictureListValue } = this.props;
-    let topArrow = <div className='arrow'></div>;
-    let bottomArrow = <div className='arrow'></div>;
+    let { changeFivePictures, changeMainPicture, initialArrowCounter, 
+      pictureArray, topArrowDarken, transformPictureListValue } = this.props;
+    let topArrow = <div className='empty'></div>;
+    let bottomArrow = <div className='empty'></div>;
+    // let whiteBox = <div className='empty'></div>;
     if (pictureArray.length > 5) {
       if (initialArrowCounter === 0) {
         topArrow = <FiChevronUp className='arrow' id='top' color='#f4efef' />;
-        bottomArrow = <FiChevronDown className='arrow' id='bottom' color='#808080' 
-        onClick={changeFivePictures}
-        />;
+        bottomArrow = <div className='arrow-container-bottom' id='bottom-arrow'>
+        <FiChevronDown className='arrow' id='bottom' color='#808080' onClick={changeFivePictures}/></div>;
       } else {
         if (topArrowDarken) {
           topArrow = <FiChevronUp className='arrow' id='top' color='#808080' 
           onClick={changeFivePictures}
           />;
-          bottomArrow = <FiChevronDown className='arrow' id='bottom' color='#f4efef' />;
+          bottomArrow = <div className='arrow-container-bottom' id='bottom-arrow'>
+          <FiChevronDown className='arrow' id='bottom' color='#f4efef' /></div>
         } else {
           topArrow = <FiChevronUp className='arrow' id='top' color='#f4efef' />;
-          bottomArrow = <FiChevronDown className='arrow' id='bottom' color='#808080' 
-          onClick={changeFivePictures}
-          />;
+          bottomArrow = <div className='arrow-container-bottom' id='bottom-arrow'>
+            <FiChevronDown className='arrow' id='bottom' color='#808080' onClick={changeFivePictures}/></div>;
         }
       }
+      // whiteBox = <div id='white-box'></div>
     }
     return (
       <div className='picture-list-carousel'>
@@ -74,10 +74,8 @@ class PictureList extends React.Component {
               )
             })}
           </div>
-          <div id='white-box'></div>
-          <div className='arrow-container-bottom' id='bottom-arrow'>
-            {bottomArrow}
-          </div>
+          {/* {whiteBox} */}
+          {bottomArrow}
         </div>
       </div>
     )

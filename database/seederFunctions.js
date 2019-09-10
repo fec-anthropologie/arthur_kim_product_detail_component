@@ -60,16 +60,29 @@ const assignCorrectImageLinks = (object, index) => {
 const colorGrabber = (array, colorArray) => {
   //grab first from array
   var firstLink = array[0]
-
-  var currentColor;
-
+  var lastLink = array[array.length-1]
+  var currentColors = []
   for (var i = 0; i < colorArray.length; i++) {
     if (firstLink.indexOf(colorArray[i]) !== -1) {
-      currentColor = colorArray[i]
+      currentColors.push(colorArray[i]);
     }
   }
-  return currentColor;
+  if (lastLink.indexOf(currentColors[0]) === -1){
+    for (var i = 0; i < colorArray.length; i++) {
+      if (lastLink.indexOf(colorArray[i]) !== -1) {
+        currentColors.push(colorArray[i]);
+      }
+    }
+  }
+  return currentColors;
   //split it and find the colors
+}
+const colorImageGrabber = (ImageLinksArray, colorsArray) => {
+  var storage = [];
+  for (var i = 0; i < colorsArray.length; i++){
+    storage.push(ImageLinksArray[colorsArray[i]]);
+  }
+  return storage;
 }
 
 
@@ -79,5 +92,6 @@ module.exports = {
   generateRandomNumber,
   getRandomArbitraryStarCount,
   assignCorrectImageLinks,
-  colorGrabber
+  colorGrabber,
+  colorImageGrabber
 }

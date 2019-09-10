@@ -12,7 +12,11 @@
 }
 .product-color .color-image-container {
   padding-bottom: 20px;
+  display: flex;
 }
+/* .product-color .color-image-container {
+  margin-right: 5px;
+} */
 .product-color .color-image-container .color-image-border {
   border: 1px solid #5c5c5f;
   border-radius: 75px;
@@ -21,6 +25,7 @@
   width: 30px;
   height: 30px;
   line-height: 30px;
+  margin-right: 10px;
 }
 /* .product-color .color-image-container .color */
 .product-color .color-image {

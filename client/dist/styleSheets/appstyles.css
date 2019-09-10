@@ -11,10 +11,10 @@ body {
 .app-body .product-header {
   display: flex;
   padding-bottom: 2%;
-  margin-left: 30%;
-  /* z-index: 2; */
+  margin-left: 26.4%;
+  margin-top: 24px;
   color: #26262c;
-}
+ }
 .app-body .product-header .start {
   padding-left: 1%;
 }
