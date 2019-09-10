@@ -30,7 +30,7 @@ body {
   display: flex;
 }
 .app-body-product .images-container {
-  width: 630px;
+  width: 640px;
   height: 850px;
   overflow: hidden;
   position: relative;
@@ -41,6 +41,8 @@ body {
   margin-top: 5px;
   font-style: italic;
   letter-spacing: .06rem;
+  position: relative;
+  top: -20px;
 }
 
 #gray-out {

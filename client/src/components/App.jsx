@@ -91,6 +91,9 @@ class App extends React.Component {
     return width * differenceIndex;
   }
   changeFivePictures(e) {
+    if ( document.getElementById('picture-clicked')){
+      document.getElementById('picture-clicked').removeAttribute('id')
+    }
     let height = document.querySelector('.picture').clientHeight;
     let moveLength;
     if (e.target.id === 'top') {
@@ -140,7 +143,9 @@ class App extends React.Component {
     }
   }
   handleColorClick(e){
-    // document.getElementById("picture-clicked").remove();
+    if ( document.getElementById('picture-clicked')){
+      document.getElementById('picture-clicked').removeAttribute('id')
+    }
     this.setState({
       currentColor: e.target.id,
       mainPictureIndex: 0,
@@ -153,7 +158,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     // generates random id and sends api request
-    let randomArr = [3,4,5,26,34,53,43,72];
+    let randomArr = [4,26,34,53,43,72];
   // this.getPictureData(15)
     this.getPictureData(randomArr[Math.floor(Math.random() * randomArr.length)]);
   }

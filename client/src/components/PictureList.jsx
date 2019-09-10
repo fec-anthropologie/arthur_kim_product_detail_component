@@ -22,7 +22,9 @@ class PictureList extends React.Component {
         currentPictureClicked: event.target.className
       })
     } else {
-      document.getElementById('picture-clicked').removeAttribute('id');
+      if (document.getElementById('picture-clicked')){
+        document.getElementById('picture-clicked').removeAttribute('id');
+      }
       document.getElementsByClassName(`${containerClassSearch}`)[0].setAttribute('id', 'picture-clicked');
       this.setState({
         currentPictureClicked: event.target.className
@@ -32,8 +34,8 @@ class PictureList extends React.Component {
   render() {
     let { changeFivePictures, changeMainPicture, initialArrowCounter, 
       pictureArray, topArrowDarken, transformPictureListValue } = this.props;
-    let topArrow = <div className='empty'></div>;
-    let bottomArrow = <div className='empty'></div>;
+    let topArrow = <div className='arrow'></div>;
+    let bottomArrow = <div className='arrow-container-bottom'></div>;
     // let whiteBox = <div className='empty'></div>;
     if (pictureArray.length > 5) {
       if (initialArrowCounter === 0) {
@@ -70,7 +72,8 @@ class PictureList extends React.Component {
             }>
             {pictureArray.map((picture, index) => {
               return (
-                <Picture picture={picture} key={index} id={index} changeMainPicture={changeMainPicture} checkIfPictureClickedInPictureList={this.checkIfPictureClickedInPictureList} />
+                <Picture picture={picture} key={index} id={index} changeMainPicture={changeMainPicture} 
+                checkIfPictureClickedInPictureList={this.checkIfPictureClickedInPictureList} />
               )
             })}
           </div>
