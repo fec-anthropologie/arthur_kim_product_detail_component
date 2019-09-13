@@ -22,6 +22,7 @@
 .product-ship .ship-item input,
 .product-ship .pick-up .container input {
   margin-top: 10px;
+  margin-right: 5px;
 
 }
 .product-ship .ship-item {
