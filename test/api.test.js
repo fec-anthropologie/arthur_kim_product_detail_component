@@ -7,6 +7,7 @@ describe('Test the root path', () => {
     return request(app)
       .get("/api/products/1")
       .then(response => {
+        console.log('what is in response', response.data)
         expect(response.statusCode).toBe(200)
       });
   })
@@ -20,7 +21,7 @@ describe('integration test for server and database', () => {
     connection = await MongoClient.connect(global.__MONGO_URI__, {
       useNewUrlParser: true,
     });
-    db = await connection.db(global.fec);
+    db = await connection.db(global.fecTest);
   });
 
   afterAll(async () => {
@@ -39,7 +40,7 @@ describe('integration test for server and database', () => {
         onlineExclusive: false,
         reviewStarCount: '4',
         reviewCount: 10,
-        colors: ['Blue', 'Green', 'Red'],
+        colors: ['Blue'],
         colorImages: ['Blue-Image', 'Green-Image', 'Red-Image'],
         fit: ['Standard', 'Petite', 'Plus'],
         sizeStandard: ['XS', 'S', 'M', 'L'],
@@ -53,11 +54,11 @@ describe('integration test for server and database', () => {
       await productDetails.insertOne(mockProduct);
       const insertedProduct = await productDetails.findOne({productCategoryId: 1});
       console.log('insertedProduct', insertedProduct)
-      return request(app)
+      await request(app)
       .get("/api/products/1")
-      .then(response => {
-        console.log('what is response', response)
-        expect(response.data.productName).toBe('Calypso Maxi Jumpsuit')
+      .then(({ data }) => {
+        // console.log('what is response', response)
+        expect(data.productName).toBe('Calypso Maxi Jumpsuit')
       });
     })
   })

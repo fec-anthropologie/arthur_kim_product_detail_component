@@ -28,7 +28,7 @@ describe('insert', () => {
       onlineExclusive: false,
       reviewStarCount: '4',
       reviewCount: 10,
-      colors: ['Blue', 'Green', 'Red'],
+      colors: ['Blue'],
       colorImages: ['Blue-Image', 'Green-Image', 'Red-Image'],
       fit: ['Standard', 'Petite', 'Plus'],
       sizeStandard: ['XS', 'S', 'M', 'L'],

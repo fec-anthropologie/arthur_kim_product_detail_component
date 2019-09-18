@@ -28,10 +28,9 @@ const {
   generateRandomNumber,
   getRandomArbitraryStarCount,
   assignCorrectImageLinks,
-  colorGrabber
+  colorGrabber,
+  colorImageGrabber
 } = require('./seederFunctions.js')
-const fs = require('fs');
-const path = require('path');
 const { dressImageLinks } = require('./dressImageLinks.js');
 const { pantsImageLinks } = require('./pantsImageLinks.js');
 const { skirtsImageLinks } = require('./skirtsImageLinks.js');
@@ -68,7 +67,7 @@ const createDresses = () => {
     document.sizePlusUnavailable = generateRandomValue(dressSkirtSizePlus);
     document.image = assignCorrectImageLinks(dressImageLinks, i);
     document.colors = colorGrabber(document.image, colors);
-    document.colorImages = colorImageLinks[document.colors];
+    document.colorImages = colorImageGrabber(colorImageLinks, document.colors);
     storage.push(document);
     document = {};
   }
@@ -92,7 +91,7 @@ const createPants = () => {
     document.sizePlusUnavailable = generateRandomValue(pantsSizePlus);
     document.image = assignCorrectImageLinks(pantsImageLinks, i);
     document.colors = colorGrabber(document.image, colors);
-    document.colorImages = colorImageLinks[document.colors];
+    document.colorImages = colorImageGrabber(colorImageLinks, document.colors);
     storage.push(document);
     document = {};
   }
@@ -116,7 +115,7 @@ const createSkirts = () => {
     document.sizePlusUnavailable = generateRandomValue(dressSkirtSizePlus);
     document.image = assignCorrectImageLinks(skirtsImageLinks, i);
     document.colors = colorGrabber(document.image, colors);
-    document.colorImages = colorImageLinks[document.colors];
+    document.colorImages = colorImageGrabber(colorImageLinks, document.colors);
     storage.push(document);
     document = {};
   }
@@ -140,7 +139,7 @@ const createBedding = () => {
     document.sizePlusUnavailable = '';
     document.image = assignCorrectImageLinks(beddingImageLinks, i);
     document.colors = colorGrabber(document.image, colors);
-    document.colorImages = colorImageLinks[document.colors];
+    document.colorImages = colorImageGrabber(colorImageLinks, document.colors);
     storage.push(document);
     document = {};
   }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon ./server/index.js",
+    "start": "node ./server/index.js",
     "build": "webpack -w",
     "seed": "node ./database/seeder.js"
   },
@@ -55,6 +55,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
     "superagent": "^5.1.0",
     "supertest": "^4.0.2"

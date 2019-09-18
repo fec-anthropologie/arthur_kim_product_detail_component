@@ -45,13 +45,15 @@
   background-color: #fdfdf9;
   top: -1px;
   padding-top: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 13px;
+  z-index:10
 }
 #bottom-arrow {
   position: relative;
-  top: -300px;
+  top: -140px;
   background-color: #fdfdf9;
   padding-bottom: 100px;
+  /* z-index:5 */
 }
 #white-box {
   height: 30px;

@@ -6,15 +6,15 @@ body {
   background-color: #fdfdf9;
 }
 .app-body {
-  padding: 3.5% 2.5% 10% 15%;
+  padding: 6.5% 2.5% 0% 6%;
 }
 .app-body .product-header {
   display: flex;
   padding-bottom: 2%;
-  margin-left: 30%;
-  /* z-index: 2; */
+  margin-left: 39%;
+  margin-top: 24px;
   color: #26262c;
-}
+ }
 .app-body .product-header .start {
   padding-left: 1%;
 }
@@ -30,7 +30,7 @@ body {
   display: flex;
 }
 .app-body-product .images-container {
-  width: 630px;
+  width: 640px;
   height: 850px;
   overflow: hidden;
   position: relative;
@@ -41,6 +41,8 @@ body {
   margin-top: 5px;
   font-style: italic;
   letter-spacing: .06rem;
+  position: relative;
+  top: -50px;
 }
 
 #gray-out {
