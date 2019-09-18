@@ -6,12 +6,12 @@ body {
   background-color: #fdfdf9;
 }
 .app-body {
-  padding: 6.5% 2.5% 0% 3%;
+  padding: 6.5% 2.5% 0% 6%;
 }
 .app-body .product-header {
   display: flex;
   padding-bottom: 2%;
-  margin-left: 38%;
+  margin-left: 39%;
   margin-top: 24px;
   color: #26262c;
  }
