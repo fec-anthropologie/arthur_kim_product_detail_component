@@ -16,7 +16,7 @@
 ## Related Projects
 
  - Navigation/Search Bar - [Link](https://github.com/fec-anthropologie/emilyayang)
- - Reviews - [Link] (https://github.com/fec-anthropologie/jiblu)
+ - Reviews - [Link](https://github.com/fec-anthropologie/jiblu)
 
 ## Setup
 
