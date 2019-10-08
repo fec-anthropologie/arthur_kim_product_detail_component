@@ -4,18 +4,8 @@ import PictureList from './PictureList.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import Axios from 'axios';
 import AfterPayModal from './AfterPayModal.jsx';
-// const pictureArray = [
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b?$a15-pdp-detail-shot$&hei=900&qlt=80',
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b2?$a15-pdp-detail-shot$&hei=900&qlt=80',
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b3?$a15-pdp-detail-shot$&hei=900&qlt=80',
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_b4?$a15-pdp-detail-shot$&hei=900&qlt=80',
 
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c?$a15-pdp-detail-shot$&hei=900&qlt=80',
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c3?$a15-pdp-detail-shot$&hei=900&qlt=80',
-//   'https://s7d5.scene7.com/is/image/Anthropologie/4130638280076_061_c4?$a15-pdp-detail-shot$&hei=900&qlt=80'
-// ];
 const afterPay = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSYF5YkDEGMF8EYXrKBfL0aJOt6guePtglaHrDKQNnXkXPslvX';
-// const colorLink = 'https://images.fabric.com/images/693/693/0403744.jpg';
 import '../../dist/styleSheets/appstyles.css';
 import '../../dist/styleSheets/mainPictureStyles.css';
 import '../../dist/styleSheets/modalStyles.css';
@@ -114,11 +104,7 @@ class App extends React.Component {
   }
   handleAfterPayInfoClick() {
     if (!this.state.afterPayClicked) {
-      // document.getElementsByClassName('fec-container')[0];
-      // console.log('document.getElementsByClassName', document.getElementsByClassName('fec-container'))
       document.getElementsByTagName('div')[0].setAttribute('id', 'gray-out');
-      // document.getElementsByTagName('body')[0];
-      // document.getElementsByTagName('body')[0].setAttribute('id', 'no-move');
       document.getElementsByClassName('picture-list-carousel')[0];
       document.getElementsByClassName('picture-list-carousel')[0].setAttribute('id', 'gray-out-picture-list');
       document.getElementsByClassName('top')[0];
