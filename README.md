@@ -15,8 +15,8 @@
 
 ## Related Projects
 
- - Navigation/Search Bar - [Link](https://github.com/fec-anthropologie/emilyayang)
- - Reviews - [Link](https://github.com/fec-anthropologie/jiblu)
+ - Navigation/Search Bar - [Link](https://github.com/fec-anthropologie/emily_yang_navigation_bar)
+ - Reviews - [Link](https://github.com/fec-anthropologie/ji_kim_reviews_and_ratings)
 
 ## Setup
 
