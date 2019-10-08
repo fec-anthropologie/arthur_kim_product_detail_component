@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-1. [General Info](#generalinfo)
-1. [Related Projects](#relatedprojects)
+1. [General Info](#general-info)
+1. [Related Projects](#related-projects)
 1. [Setup](#setup)
 1. [Requirements](#requirements)
 
