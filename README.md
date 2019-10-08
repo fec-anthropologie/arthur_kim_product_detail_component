@@ -29,7 +29,4 @@ To run this project, install it locally using npm:
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node 6.13.0
-- etc
