@@ -11,6 +11,8 @@
 
 >The goal of this application was to emulate and recreate the product detail section of the Anthropologie website. This microservice component along with the navigation/search bar and reviews components were built in service oriented architecture format.
 
+![Sample View](./preview.png)
+
 ## Related Projects
 
  - Navigation/Search Bar - [Link](https://github.com/fec-anthropologie/emilyayang)
