@@ -11,7 +11,7 @@
 
 >The goal of this application was to emulate and recreate the product detail section of the Anthropologie website. This micr-oservice component along with the navigation/search bar and reviews components were built in service oriented architecture format.
 
-![Anthro Product Detail Demo Video](./readme_video.png)](https://www.youtube.com/watch?v=eGhj98Tu7_I)
+![Anthro Product Detail Demo Video](./preview.png)](https://www.youtube.com/watch?v=eGhj98Tu7_I)
 
 
 ## Related Projects
