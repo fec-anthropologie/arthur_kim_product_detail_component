@@ -143,9 +143,8 @@ class App extends React.Component {
     })
   }
   componentDidMount() {
-    // generates random id and sends api request
+    // generates random id to grab products with more than 5 images for leftmost carousel to appear
     let randomArr = [4,26,34,53,43,72];
-  // this.getPictureData(15)
     this.getPictureData(randomArr[Math.floor(Math.random() * randomArr.length)]);
   }
 
