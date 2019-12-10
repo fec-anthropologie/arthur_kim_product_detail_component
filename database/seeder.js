@@ -45,7 +45,6 @@ let beddingArr = generateProductNames(beddingAdjectives, beddingAdjectives, bedd
 let productArr = dressesArr.concat(pantsArr, skirtsArr, beddingArr)
 
 let storage = [];
-// let fileNames = [];
 
 const createDresses = () => {
   let document = {};

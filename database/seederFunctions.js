@@ -75,7 +75,6 @@ const colorGrabber = (array, colorArray) => {
     }
   }
   return currentColors;
-  //split it and find the colors
 }
 const colorImageGrabber = (ImageLinksArray, colorsArray) => {
   var storage = [];
